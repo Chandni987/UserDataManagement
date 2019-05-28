@@ -71,16 +71,26 @@ app.post('/create', function(req, res){
 
 
 	var c = new Date();
-
+	userData.find({phoneNumber:phone}, function(err, success){
+		if(sucess.lenght>0)
+			res.redirect('/UserAlredyExist');
+		else{
+			
 		// Adding values in DB
-		var newUser = new userData({firstName: fname, lastName:lname, DOB:dateofbirth, phoneNumber:phone, Email:userID, created:c});
-		newUser.save(function (err, testEvent) {
-  			if (err) 
-  				return console.error(err);
-  			console.log("data sent to DB");
-		});
+			var newUser = new userData({firstName: fname, lastName:lname, DOB:dateofbirth, phoneNumber:phone, Email:userID, created:c});
+			newUser.save(function (err, testEvent) {
+				if (err) 
+					return console.error(err);
+				console.log("data sent to DB");
+			});
 
-	res.redirect('/user');
+			res.redirect('/user');
+		}
+		
+		
+		
+	});
+
 });
 
 
