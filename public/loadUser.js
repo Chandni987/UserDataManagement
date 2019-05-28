@@ -82,7 +82,7 @@ $(document).ready(function(){
 
 		
 
-		var k=$('.editRow').attr('name');
+		var k=$(this).attr('name');
 
 		var x=$(this).attr('title');
 
